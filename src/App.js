@@ -1,25 +1,22 @@
-import logo from './logo.svg';
-import './App.css';
+import React, { createContext } from "react";
+import Child1 from "./Child1";
+import Child2 from "./Child2";
 
-function App() {
+export const NameContext = createContext();
+
+function App({ name }) {
   return (
-    <div className="App">
-      <header className="App-header">
-        <img src={logo} className="App-logo" alt="logo" />
-        <p>
-          Edit <code>src/App.js</code> and save to reload.
-        </p>
-        <a
-          className="App-link"
-          href="https://reactjs.org"
-          target="_blank"
-          rel="noopener noreferrer"
-        >
-          Learn React
-        </a>
-      </header>
+    <div>
+      <h1>{name} from app</h1>
+      <NameContext.Provider value={name}>
+        <Child1 />
+      </NameContext.Provider>
     </div>
   );
 }
+
+App.defaultProps = {
+  name: "Greg",
+};
 
 export default App;
